@@ -1,0 +1,49 @@
+package com.example.gofly.ui.dashboard;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.example.gofly.CheckInActivity;
+import com.example.gofly.R;
+import com.example.gofly.searchResult.SearchResultActivity;
+
+public class DashboardFragment extends Fragment implements View.OnClickListener{
+
+    private DashboardViewModel dashboardViewModel;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        Button checkIn = root.findViewById(R.id.checkInBtn);
+        checkIn.setOnClickListener(this);
+
+        Button refund = root.findViewById(R.id.refundBtn);
+        refund.setOnClickListener(this);
+        return root;
+    }
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.checkInBtn:
+                intent = new Intent(getContext(), CheckInActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
+
+}
